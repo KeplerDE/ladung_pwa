@@ -1,11 +1,11 @@
 {
-  "name": "Ladung Rechner",
+  "name": "Ladungsrechner für Binnenschiffe",
   "short_name": "Ladung",
-  "description": "Калькулятор загрузки судна по 6 точкам осадки",
+  "description": "Ein Offline-Rechner zur Ermittlung des Tiefgangs und der Verdrängung anhand von 6 Messpunkten – basierend auf Eichschein-Daten.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#111827",
+  "theme_color": "#0284c7",
   "icons": [
     {
       "src": "/icon-192x192.png",
