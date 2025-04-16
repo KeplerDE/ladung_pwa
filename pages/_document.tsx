@@ -4,8 +4,8 @@ export default function Document() {
   return (
     <Html lang="de">
       <Head>
-        {/* Favicon */}
-        <link rel="icon" href="/favicon.ico" />
+        {/* Favicon (PNG) */}
+        <link rel="icon" type="image/png" href="/favicon.png" />
 
         {/* PWA manifest */}
         <link rel="manifest" href="/manifest.json" />

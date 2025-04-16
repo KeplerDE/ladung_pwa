@@ -1,0 +1,81 @@
+.container {
+    min-height: 100vh;
+    background: #fff;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .logo {
+    height: 40px;
+    margin-bottom: 1.5rem;
+  }
+  
+  .card {
+    background: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 16px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 640px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  
+  .title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+  
+  .subtitle {
+    font-size: 0.875rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .gridWrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .gridItem {
+    text-align: center;
+  }
+  
+  .gridItem input {
+    width: 100%;
+    padding: 0.4rem;
+    font-size: 0.875rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+  }
+  
+  .button {
+    background-color: #0284c7;
+    color: white;
+    font-weight: bold;
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .button:hover {
+    background-color: #0369a1;
+  }
+  
+  .result {
+    margin-top: 1.5rem;
+    text-align: center;
+  }
+  
+  .warning {
+    font-size: 0.85rem;
+    color: #888;
+  }
+  

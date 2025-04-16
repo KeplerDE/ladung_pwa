@@ -1,7 +1,6 @@
 import { useState } from "react";
-import { Input } from "../components/ui/input";
-import { Card, CardContent } from "../components/ui/card";
 import { eicheTable } from "../utils/eicheTable";
+import styles from "./index.module.css";
 
 export default function LadungCalculator() {
   const [osadki, setOsadki] = useState(["", "", "", "", "", ""]);
@@ -29,67 +28,61 @@ export default function LadungCalculator() {
   const avg = calculated ? avgOsadka() : null;
   const result = avg !== null ? interpolate(avg).toFixed(2) : null;
 
-  const labels = [
-    "Hinten Backbord", "Hinten Steuerbord",
-    "Mitte Backbord", "Mitte Steuerbord",
-    "Vorne Backbord", "Vorne Steuerbord"
-  ];
-
   return (
-    <div className="p-4 max-w-xl mx-auto">
-      <Card className="rounded-2xl shadow-lg">
-        <CardContent className="space-y-4 p-6">
-          {/* Логотип сверху */}
-          <div className="flex justify-center mb-4">
-            <img src="/reederei-logo.jpg" alt="Logo" className="h-10" />
-          </div>
+    <div className={styles.container}>
+      <img src="/reederei-logo.jpg" alt="Logo" className={styles.logo} />
 
-          <h1 className="text-xl font-semibold text-center">Ladungsrechner für Michaela-Back</h1>
-          <p className="text-sm text-muted text-center">Geben Sie die sechs Tiefgänge ein:</p>
+      <div className={styles.card}>
+        <h1 className={styles.title}>Ladungsrechner für Michaela-Back</h1>
+        <p className={styles.subtitle}>Geben Sie die sechs Tiefgänge ein:</p>
 
-          <div className="grid grid-cols-3 gap-2 text-center text-xs font-medium">
-            {labels.map((label, i) => (
-              <div key={i}>
-                <p>{label}</p>
-                <Input
-                  type="number"
-                  min={100}
-                  max={316}
-                  value={osadki[i]}
-                  onChange={(e) => {
-                    const updated = [...osadki];
-                    updated[i] = e.target.value;
-                    setOsadki(updated);
-                    setCalculated(false);
-                  }}
-                  step="0.1"
-                  placeholder="cm"
-                />
-              </div>
-            ))}
+        <div className={styles.gridWrapper}>
+          <div className={styles.gridItem}>
+            <p>Hinten Backbord</p>
+            <input value={osadki[0]} onChange={(e) => updateOsadki(0, e)} type="number" min={100} max={316} step="0.1" />
           </div>
+          <div className={styles.gridItem}>
+            <p>Mitte Backbord</p>
+            <input value={osadki[1]} onChange={(e) => updateOsadki(1, e)} type="number" min={100} max={316} step="0.1" />
+          </div>
+          <div className={styles.gridItem}>
+            <p>Vorne Backbord</p>
+            <input value={osadki[2]} onChange={(e) => updateOsadki(2, e)} type="number" min={100} max={316} step="0.1" />
+          </div>
+          <div className={styles.gridItem}>
+            <p>Hinten Steuerbord</p>
+            <input value={osadki[3]} onChange={(e) => updateOsadki(3, e)} type="number" min={100} max={316} step="0.1" />
+          </div>
+          <div className={styles.gridItem}>
+            <p>Mitte Steuerbord</p>
+            <input value={osadki[4]} onChange={(e) => updateOsadki(4, e)} type="number" min={100} max={316} step="0.1" />
+          </div>
+          <div className={styles.gridItem}>
+            <p>Vorne Steuerbord</p>
+            <input value={osadki[5]} onChange={(e) => updateOsadki(5, e)} type="number" min={100} max={316} step="0.1" />
+          </div>
+        </div>
 
-          <div className="flex justify-center mt-4">
-            <button
-              className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded-xl shadow"
-              onClick={handleCalculate}
-            >
-              Berechnen
-            </button>
-          </div>
+        <button className={styles.button} onClick={handleCalculate}>Berechnen</button>
 
-          <div className="text-md mt-4 text-center">
-            {avg !== null ? (
-              <>
-                <p>Durchschnittlicher Tiefgang: <strong>{avg.toFixed(2)}</strong> cm</p>
-                <p>Verdrängung: <strong>{result}</strong> Tonnen</p>
-              </>
-            ) : (
-              calculated && <p className="text-sm text-muted">Bitte alle 6 Werte eingeben (100–316 cm)</p>
-            )}
-          </div>
-        </CardContent>
-      </Card>
+        <div className={styles.result}>
+          {avg !== null ? (
+            <>
+              <p>Durchschnittlicher Tiefgang: <strong>{avg.toFixed(2)}</strong> cm</p>
+              <p>Verdrängung: <strong>{result}</strong> Tonnen</p>
+            </>
+          ) : (
+            calculated && <p className={styles.warning}>Bitte alle 6 Werte eingeben (100–316 cm)</p>
+          )}
+        </div>
+      </div>
     </div>
   );
+
+  function updateOsadki(index: number, e: React.ChangeEvent<HTMLInputElement>) {
+    const updated = [...osadki];
+    updated[index] = e.target.value;
+    setOsadki(updated);
+    setCalculated(false);
+  }
 }
